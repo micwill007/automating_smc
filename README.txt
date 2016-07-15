@@ -30,7 +30,6 @@ TODO:
 copy data feed?
 copy core fields?
 copy sorting?
-copy field faceting?
 
 
 py2exe/dmg?
