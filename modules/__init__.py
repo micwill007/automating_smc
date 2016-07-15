@@ -1,0 +1,1 @@
+import modules.fieldSettings, modules.fieldSettingText, modules.synonym, modules.fieldFaceting
