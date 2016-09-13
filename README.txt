@@ -21,7 +21,7 @@ ex:
 
 operation:
 
-there are booleans that control which module is going to run based on the checkmarks. check the one u want to run. do not have any typos in the account names or you might make some funky shit happen.
+there are booleans that control which module is going to run based on the checkmarks. check the one u want to run. do not have any typos in the account names or you might make some funky things happen.
 scrape is used for scraping from an "original" smc account to a new account, sitename.
 
 
