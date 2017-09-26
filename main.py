@@ -1,62 +1,49 @@
 from modules import *
-import time, sys, json
 from tkinter import *
 
 
 ###############################################
 #
-#   WARNING: Don't run scraping scripts unless
-#   the two accounts are THE SAME
+#   GSA Advantage product scraper  
 #
 ###############################################
 
-with open('./config.json') as data_file:
-  data = json.load(data_file)
-
-user = data['username']
-passw = data['password']
-path = data['driverlocation']
-
 def callback():
   a = e.get()
-  b = f.get()
+
   if (var.get()):
-    synonym.runSynonym(a, b, path, user, passw) 
+    search.search()
 
   if (var2.get()):
-    fieldSettingText.runFieldSettingText(b, path, user, passw)
+    scrape.scrape(a)
 
-  if (var3.get()):
-    fieldSettings.runFieldSettings(a, b, path, user, passw)
-
-  if (var4.get()):
-    fieldFaceting.runFieldFaceting(a, b, path, user, passw)
-
+# init tkinter
 master = Tk()
+
+# text areas
+S = Label(master, height = 6, background = "lightblue", text='grab an https proxy from the site below. Make sure to filter by United States and choose an anonymous, not elite proxy.')
+S.pack()
+
+# text areas
+T = Label(master, height = 6, background = "grey", text='https://free-proxy-list.net/')
+T.pack()
+
+# text areas
+X = Label(master, height = 6, background = "orange", text='Format is: "http://ipaddress:port" EX: https://216.56.58.2:8000')
+X.pack()
+
 e = Entry(master)
-e.insert(0, "scrape")
+e.insert(0, "Please enter a proxy")
 e.pack()
 
-f = Entry(master)
-f.insert(0, "site")
-f.pack()
-
+# buttons
 var = IntVar()
-c = Checkbutton(master, text="synonym", variable=var)
+c = Checkbutton(master, text="search", variable=var)
 c.pack(side=LEFT)
 
 var2 = IntVar()
-c2 = Checkbutton(master, text="fieldtext", variable=var2)
+c2 = Checkbutton(master, text="scrape", variable=var2)
 c2.pack(side=LEFT)
-
-var3 = IntVar()
-c3 = Checkbutton(master, text="fieldsettings", variable=var3)
-c3.pack(side=LEFT)
-
-var4 = IntVar()
-c4 = Checkbutton(master, text="fieldfaceting", variable=var4)
-c4.pack(side=LEFT)
-
 
 e.focus_set()
 
