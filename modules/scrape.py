@@ -7,7 +7,8 @@ import sys
 
 
 def scrape(proxy):
-
+    
+    proxy = 'https://' + proxy
 
     # Read the CSV file in (skipping first row).
     csvRows = []
@@ -44,7 +45,7 @@ def scrape(proxy):
             for link in prodUrls:
                 print(link)
                 res = requests.get(link, proxies=proxies, timeout=None)
-                soup = BeautifulSoup(res.text, 'lxml')
+                soup = BeautifulSoup(res.text, 'html.parser')
 
                 pricingTable = soup.findAll(attrs={
                     'width': "100%",
@@ -168,7 +169,7 @@ def scrape(proxy):
                                         
                                         res2 = requests.get(
                                             newlink, proxies=proxies, timeout=None)
-                                        soup2 = BeautifulSoup(res2.text, 'lxml')
+                                        soup2 = BeautifulSoup(res2.text, 'html.parser')
 
                                         nameTable2 = soup2.findAll(attrs={
                                             'width': "100%",
@@ -254,7 +255,7 @@ def scrape(proxy):
 
 
         # Create a backup of where we are.
-        backup = open('backup.csv', 'w', newline='')
+        backup = open('./csv/backup.csv', 'w', newline='')
         backupwriter = csv.writer(backup)
         for row in csvRows:
             backupwriter.writerow(row)

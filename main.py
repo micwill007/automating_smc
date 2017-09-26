@@ -12,7 +12,7 @@ def callback():
   a = e.get()
 
   if (var.get()):
-    search.search()
+    search.search(a)
 
   if (var2.get()):
     scrape.scrape(a)
@@ -29,7 +29,7 @@ T = Label(master, height = 6, background = "grey", text='https://free-proxy-list
 T.pack()
 
 # text areas
-X = Label(master, height = 6, background = "orange", text='Format is: "http://ipaddress:port" EX: https://216.56.58.2:8000')
+X = Label(master, height = 6, background = "orange", text='Format is: "ipaddress:port" EX: 216.56.58.2:8000')
 X.pack()
 
 e = Entry(master)
@@ -51,5 +51,3 @@ b = Button(master, text="Run", width=10, command=callback)
 b.pack()
 
 mainloop()
-#comment this out if u wanna stay on the page
-#browser.quit()

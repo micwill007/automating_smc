@@ -5,12 +5,17 @@ import webbrowser
 import selenium
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
+import os
 
-def search():
-        
-    # Chrome.
-    webdriverPath = '/Users/mwilliams/Desktop/gsa/chromedriver'
-    driver = webdriver.Chrome(webdriverPath)
+def search(proxy):
+
+    webdriverPath = os.getcwd() + '\dependencies\chromedriver.exe'
+    print(webdriverPath)
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--proxy-server=%s' % proxy)
+    driver = webdriver.Chrome(webdriverPath, chrome_options=chrome_options)
+
+
 
 
     def check_tag_exists(name):
@@ -34,19 +39,18 @@ def search():
 
 
     # Read from the lsit of product id's provided.
-    mftrNumCsv = open('tony-export.csv')
+    mftrNumCsv = open('./csv/tony-export.csv')
     mftrNumReader = csv.reader(mftrNumCsv, delimiter=',')
     mftrNums = list(mftrNumReader)
 
     # Setup to write to a new csv file
-    outputfile = open('productNumbers.csv', 'w', newline='')
+    outputfile = open('./csv/productNumbers.csv', 'w', newline='')
     outputwriter = csv.writer(outputfile)
-
 
     # For each product row in the CSV
     for product in mftrNums:
+        
         # Perform an exact search for mfr #
-
         print(product)
 
         # Our list variables
